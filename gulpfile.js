@@ -1,11 +1,14 @@
-var         gulp = require('gulp'),
-          concat = require('gulp-concat'),
-          uglify = require('gupl-uglify'),
-       uglifycss = require('gulp-uglifycss'),
-         nodemon = require('gulp-nodemon'),
-     browserSync = require('browser-sync')
+// npm install -g gulp
+// npm install --save-dev gulp gulp-concat gulp-nodemon gulp-uglify gulp-uglifycss
+// npm install --save-dev browser-sync
+var     gulp = require('gulp'),
+      concat = require('gulp-concat'),
+      uglify = require('gulp-uglify'),
+   uglifycss = require('gulp-uglifycss'),
+     nodemon = require('gulp-nodemon'),
+ browserSync = require('browser-sync')
 
-gulp.task('minify-css', function(){
+gulp.task('minify-css', function() {
   gulp.src('public-dev/css/*.css')
     .pipe(concat('application.min.css'))
     .pipe(uglifycss())
@@ -18,13 +21,19 @@ gulp.task('minify-js', function(){
     .pipe(concat('application.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('public/js'))
+    // .pipe(browserSync.stream())
 })
 
+// run nodemon before we execute this task
 gulp.task('browser-sync', ['nodemon'], function(){
   browserSync.init(null, {
-    proxy: 'http://localhost: 3000',
+    // create a proxy out of this
+    proxy: 'http://localhost:3000',
+    // ** any directory
+    // *.* any file with any extension
     files: ['public-dev/**/*.*'],
     browser: 'google chrome',
+    // make it available to us at port 7000 (this version of app is going to be using browser sync)
     port: 7000
   })
 })
@@ -37,8 +46,9 @@ gulp.task('nodemon', function(){
 })
 
 gulp.watch('public-dev/css/*.css', ['minify-css'])
-gulp.watch('public-dev/js/*.js' ['minify-js'])
+gulp.watch('public-dev/js/*.js', ['minify-js'])
 
-gulp.task('default', ['browser-sync'], function() {
-  console.log('gulp default!')
+// what do you wanna run by default
+gulp.task('default', ['browser-sync'], function(){
+  console.log('Default task running!')
 })
