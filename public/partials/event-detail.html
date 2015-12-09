@@ -7,3 +7,17 @@
 		<p><strong>Description</strong>: {{ eCtrl.event.description.text }}</p>
 	</div>
 </div>
+
+<div ng-show="eCtrl.similarEvents.length">
+	<h1>You may also like...</h1>
+<div ng-repeat="event in eCtrl.similarEvents | limit" class="list-group-item">
+		<div class="list-group-item-heading event-name {{event.id}}">
+			<a href="#/events/{{event.id}}">{{ event.name.text }}</a>
+		</div>
+		<div id="{{event.id}}" style="display:none">
+			<p>Description: {{event.description.text}}</p>
+			<p>Time: {{event.start.local}}</p>
+			<p>Link on eventbrite: {{event.url}}</p>
+		</div>
+</div>
+</div>
