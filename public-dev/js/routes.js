@@ -1,8 +1,10 @@
 (function() {
   angular.module('App')
     .config(['$routeProvider', eventRoutes])
+    .config(['$sceDelegateProvider', sceDelegateProvider])
 
     eventRoutes.$inject = ['$routeProvider']
+    sceDelegateProvider.$inject = ['$sceDelegateProvider']
 
     function eventRoutes($routeProvider) {
       $routeProvider
@@ -17,5 +19,10 @@
             controllerAs: 'eCtrl'
         })
     }
+
+    function sceDelegateProvider($sceDelegateProvider) {
+      $sceDelegateProvider.resourceUrlWhitelist(['**'])
+    }
+
 
 }());

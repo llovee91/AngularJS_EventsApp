@@ -7,7 +7,13 @@
 		<p><strong>Description</strong>: {{ eCtrl.event.description.text }}</p>
 	</div>
 </div>
+<div >
+utube-link: {{eCtrl.utubeLink}}
 
+<!-- {{video.id.videoId | trusted}} -->
+<iframe width="560" height="315" ng-src="{{eCtrl.utubeLink}}" frameborder="0" allowfullscreen></iframe>
+
+</div>
 <div ng-show="eCtrl.similarEvents.length">
 	<h1>You may also like...</h1>
 <div ng-repeat="event in eCtrl.similarEvents | limit" class="list-group-item">
@@ -20,4 +26,5 @@
 			<p>Link on eventbrite: {{event.url}}</p>
 		</div>
 </div>
+
 </div>

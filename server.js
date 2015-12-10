@@ -5,6 +5,7 @@ var       express = require('express'),
              path = require('path'),
          mongoose = require('mongoose'),
        bodyParser = require('body-parser'),
+   oauthSignature = require('oauth-signature'),
         apiRoutes = require('./routes/api.js')
 
 mongoose.connect('mongodb://localhost/cars', function(err) {
@@ -24,6 +25,7 @@ app.get('/', function(req,res) {
 })
 
 app.use('/', apiRoutes)
+
 
 app.listen(3000, function(){
   console.log('Server on port 3000')
